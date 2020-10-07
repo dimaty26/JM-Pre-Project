@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
+
     public UserDaoHibernateImpl() {
 
     }
@@ -22,7 +23,7 @@ public class UserDaoHibernateImpl implements UserDao {
         try {
             transaction = session.beginTransaction();
 
-            session.createSQLQuery("create Table public.users" +
+            session.createSQLQuery("create Table users" +
                     " ( id bigint," +
                     " name varchar(255)," +
                     " last_name varchar(255)," +
@@ -100,7 +101,7 @@ public class UserDaoHibernateImpl implements UserDao {
         List<User> users;
 
         try {
-            users = session.createSQLQuery("from User").list();
+            users = session.createQuery("from User").list();
         } finally {
             session.close();
         }
@@ -111,15 +112,14 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void cleanUsersTable() {
 
-        Transaction transaction;
         Session session = Util.getSessionFactory().openSession();
 
         try {
-            transaction = session.beginTransaction();
+            session.beginTransaction();
 
-            session.createQuery("delete from Users");
+            session.createQuery("delete from User").executeUpdate();
 
-            transaction.commit();
+            session.getTransaction().commit();
         } finally {
             session.close();
         }

@@ -16,7 +16,7 @@ public class Util {
 
     private static SessionFactory sessionFactory;
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
 
         Connection conn = null;
         Properties connectionProps = new Properties();
@@ -47,7 +47,7 @@ public class Util {
 
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-                settings.put(Environment.HBM2DDL_AUTO, "update");
+                settings.put(Environment.HBM2DDL_AUTO, "create");
 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);

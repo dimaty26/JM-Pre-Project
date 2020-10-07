@@ -12,6 +12,9 @@ public class Main {
 
         UserService service = new UserServiceImpl();
 
+        // Delete table
+        service.dropUsersTable();
+
         // Creating user's table
         service.createUsersTable();
 
@@ -32,5 +35,7 @@ public class Main {
 
         // Delete table
         service.dropUsersTable();
+
+        System.out.println(service.getAllUsers().size());
     }
 }
