@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+</head>
+<body>
+<h1>Car List</h1>
+
+<table border="1">
+    <tr>
+        <th>Country</th>
+        <th>Model</th>
+        <th>Year</th>
+    </tr>
+
+    <tr th:each="car: ${cars}">
+        <td th:utext="${car.country}">country</td>
+        <td th:utext="${car.model}">model</td>
+        <td th:utext="${car.year}">year</td>
+    </tr>
+
+</table>
+</body>
+</html>
